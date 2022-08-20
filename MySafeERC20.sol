@@ -4,7 +4,7 @@
 pragma solidity ^0.6.0;
 
 import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyERC20permit.sol";
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyIERC20.sol"
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyIERC20.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Address.sol";
 
 /**
