@@ -1,4 +1,4 @@
-pragma solidity >=0.6.0;
+pragma solidity >=0.8.17;
 
 import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyUniswapV2Pair.sol";
 import "https://github.com/Benjam6/Triangular-Flash/blob/main/MySafeMath.sol";
