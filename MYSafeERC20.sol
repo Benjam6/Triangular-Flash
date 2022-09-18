@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.6.0;
+pragma solidity >=0.8.17;
 
 import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyIERC20.sol";
 import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyAddresses.sol";
