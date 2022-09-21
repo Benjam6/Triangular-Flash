@@ -10,10 +10,16 @@ import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyUniswapV2Pair.so
 import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyUniswapV2router01.sol";
 import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyUniswapV2router02.sol";
 import "https://github.com/Benjam6/Triangular-Flash/blob/main/MySafeMath.sol"
-import AAVE FLASH LOAN CONTRACTS
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyOtherERC20.sol"
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyOtherIERC20.sol"
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/AaveFlashRecieverBase.sol"
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/AaveFlashReciver.sol"
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/AaveLendingPool.sol"
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyWithdrawable.sol"
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/AaveLendingPoolAddProvider.sol"
 
 
-contract MyArbiFlashLoanScriptTEST {
+contract MyArbiFlashLoanScriptTEST is AaveFlashRecieveBase {
     using MySafeERC20 for MyIERC20;
 
     interface IERC20 {
@@ -55,9 +61,9 @@ contract FlashloanBorrower is IERC3156FlashBorrower {
 
    
     function initiateFlashloan(
-      address flashloanProviderAddress = AAVE TESTNET VAULT
-      address token = ETH address
-      uint amount = 1000 PLUS DECIMALS
+      address flashloanProviderAddress = "0xF1bE881Ee7034ebC0CD47E1af1bA94EC30DF3583"
+      address token = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+      uint amount = 1000000000000000000000
       bytes calldata data = 0X0.0
     ) external {
       IERC3156FlashLender(flashloanProviderAddress).flashLoan(
