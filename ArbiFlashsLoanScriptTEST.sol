@@ -18,14 +18,48 @@ import "https://github.com/Benjam6/Triangular-Flash/blob/main/AaveLendingPool.so
 import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyWithdrawable.sol"
 import "https://github.com/Benjam6/Triangular-Flash/blob/main/AaveLendingPoolAddProvider.sol"
 
+ 
+   
 
 contract MyArbiFlashLoanScriptTEST is AaveFlashRecieveBase {
     using MySafeERC20 for MyIERC20;
+    
+    address public constant AaveLendingPoolAddressProviderAddress = 0x6B175474E89094C44Da98b954EedeAC495271d0F
+    address public constant USDT_ADDRESS = 0xdAC17F958D2ee523a2206206994597C13D831ec7
+    address public constant UNISWAP FACTORY =
+    
+    IUniswapFactory public uniswapFactoryA;
+    IUniswapFactory public uniswapFactoryB;
+    IUniswapExchange public exchangeAforLoanAsset;
+    IUniswapExchange public exchangeBforLoanAsset;
+    IUniswapExchange public exchangeAforBAT;
+    IUniswapExchange public exchangeBforBAT;
 
-    interface IERC20 {
+   constructor() public {
+      // Override the addressesProvider in the base class to use Kovan for testing
+      FlashLoanReceiverBase.addressesProvider = ILendingPoolAddressesProvider(
+        AaveLendingPoolAddressProviderAddress
+      );
+   
+   
+  uniswapFactoryA = IUniswapFactory(UNISWAP_FACTORY_A);
+      uniswapFactoryB = IUniswapFactory(UNISWAP_FACTORY_B);
+
+      // get Exchange B Address
+      address addressForUSDTExchangeA = uniswapFactoryA.getExchange(USDT_ADDRESS);
+      address addressForBATExchangeB = uniswapFactoryB.getExchange(BAT_ADDRESS);
+      // Instantiate Exchange B for BAT Token swaps
+      exchangeAforBAT = IUniswapExchange(addressForUST=DTExchangeA);
+      exchangeBforBAT = IUniswapExchange(addressForBATExchangeB);
+   
+   interface IERC20 {
     function approve(address spender, uint256 amount) external returns (bool);
     function transfer(address _to, uint256 _value) external returns (bool success);
-}
+    
+    
+    }
+
+
 
 interface IERC3156MyArbiFlashLoanScriptTEST {
  
@@ -47,10 +81,7 @@ interface IERC3156FlashLender {
     ) external returns (bool);
 }
 
-/*
-*  FlashBorrowerExample is a simple smart contract that enables
-*  to borrow and returns a flash loan.
-*/
+
 contract FlashloanBorrower is IERC3156FlashBorrower {
     uint public MAX_INT = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
     address public admin;
@@ -61,8 +92,8 @@ contract FlashloanBorrower is IERC3156FlashBorrower {
 
    
     function initiateFlashloan(
-      address flashloanProviderAddress = "0xF1bE881Ee7034ebC0CD47E1af1bA94EC30DF3583"
-      address token = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+      address flashloanProviderAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F"
+      address token = "0x6B175474E89094C44Da98b954EedeAC495271d0F"
       uint amount = 1000000000000000000000
       bytes calldata data = 0X0.0
     ) external {
@@ -86,21 +117,67 @@ contract FlashloanBorrower is IERC3156FlashBorrower {
         // Set the allowance to payback the flash loan
         IERC20(token).approve(msg.sender, MAX_INT);
         
+        function executeOperation(
+        address _reserve,
+        uint _amount,
+        uint _fee,
+        bytes calldata _params
+    ) external {
+        require(_amount <= getBalanceInternal(address(this), _reserve), "Invalid balance, was the flashLoan successful?");
+
+        address RESERVE_ADDRESS = _reserve;
+        uint256 deadline = now + 3000;
+
+        // get Exchange Address for the reserve asset
+        address addressForLoanAssetExchangeA = uniswapFactoryA.getExchange(RESERVE_ADDRESS);
+        address addressForLoanAssetExchangeB = uniswapFactoryB.getExchange(RESERVE_ADDRESS);
+        // Instantiate Exchange A
+        exchangeAforLoanAsset = IUniswapExchange(addressForLoanAssetExchangeA);
+        exchangeBforLoanAsset = IUniswapExchange(addressForLoanAssetExchangeB);
+
+        IERC20 loan = IERC20(RESERVE_ADDRESS);
+        IERC20 bat = IERC20(USDT_ADDRESS);
+
+        // Swap the reserve asset (e.g. DAI) for BAT
+        require(loan.approve(address(exchangeBforLoanAsset), _amount), "Could not approve reserve asset sell");
+
+        uint256 usdtPurchased = exchangeBforLoanAsset.tokenToTokenSwapInput(
+            _amount,
+            1,
+            1,
+            deadline,
+            USDT_ADDRESS
+        );
+
+        require(usdt.approve(address(exchangeAforUSDT), usdtPurchased), "Could not approve USDT asset sell");
+
+        // Swap USDT back to the reserve asset (e.g. DAIs)
+        uint256 reserveAssetPurchased = exchangeAforUSDT.tokenToTokenSwapInput(
+            usdtPurchased,
+            1,
+            1,
+            deadline,
+            RESERVE_ADDRESS
+        );
+
+        uint amount = _amount;
+
+        uint totalDebt = amount.add(_fee);
+
+        require(reserveAssetPurchased > totalDebt, "There is no profit! Reverting!");
+
+        transferFundsBackToPoolInternal(RESERVE_ADDRESS, amount.add(_fee));
+ 
+ 
+ 
+ uint256 profit = loan.balanceOf(address(this));
+        require(loan.transfer(msg.sender, profit), "Could not transfer back the profit");
         
-    swap ETH on Uniswap for USDT
-    swap USDT on Uniswap for ETH
-    payback flashloan
-     
-
-      // Return success to the lender, he will transfer get the funds back if allowance is set accordingly
-        return keccak256('MyArbiFlashLoanScriptTEST.onFlashLoan');
-    }
-
-    function withdraw(address recipient, address token, uint amount) external {
-      require(msg.sender == admin, 'only admin');
-      IERC20(token).transfer(recipient, amount);
-    }
+        
+         }
 }
+
+ 
 
   
   
