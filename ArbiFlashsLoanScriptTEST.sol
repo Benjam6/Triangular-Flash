@@ -26,14 +26,12 @@ contract MyArbiFlashLoanScriptTEST is AaveFlashRecieveBase {
     
     address public constant AaveLendingPoolAddressProviderAddress = 0x6B175474E89094C44Da98b954EedeAC495271d0F
     address public constant USDT_ADDRESS = 0xdAC17F958D2ee523a2206206994597C13D831ec7
-    address public constant UNISWAP FACTORY = 0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f
+    address public constant UNISWAP_FACTORY = 0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f
     
-    IUniswapFactory public uniswapFactoryA;
-    IUniswapFactory public uniswapFactoryB;
+    IUniswapFactory public uniswapFactory;
     IUniswapExchange public exchangeforLoanAsset;
-    IUniswapExchange public exchangeBforLoanAsset;
     IUniswapExchange public exchangeforUSDT;
-    IUniswapExchange public exchangeBforBAT;
+   
 
    constructor() public {
       // Override the addressesProvider in the base class to use Kovan for testing
@@ -42,15 +40,12 @@ contract MyArbiFlashLoanScriptTEST is AaveFlashRecieveBase {
       );
    
    
-  uniswapFactoryA = IUniswapFactory(UNISWAP_FACTORY_A);
-      uniswapFactoryB = IUniswapFactory(UNISWAP_FACTORY_B);
+  uniswapFactory = IUniswapFactory(UNISWAP_FACTORY);
+  
 
-      // get Exchange B Address
-      address addressForUSDTExchangeA = uniswapFactoryA.getExchange(USDT_ADDRESS);
-      address addressForBATExchangeB = uniswapFactoryB.getExchange(BAT_ADDRESS);
-      // Instantiate Exchange B for BAT Token swaps
-      exchangeAforBAT = IUniswapExchange(addressForUSDTExchangeA);
-      exchangeBforBAT = IUniswapExchange(addressForBATExchangeB);
+      // get Exchange Address
+      address addressForUSDTExchange = uniswapFactory.getExchange(USDT_ADDRESS);
+  
    
    interface IERC20 {
     function approve(address spender, uint256 amount) external returns (bool);
@@ -129,16 +124,16 @@ contract FlashloanBorrower is IERC3156FlashBorrower {
         uint256 deadline = now + 3000;
 
         // get Exchange Address for the reserve asset
-        address addressForLoanAssetExchangeA = uniswapFactoryA.getExchange(RESERVE_ADDRESS);
-        address addressForLoanAssetExchangeB = uniswapFactoryB.getExchange(RESERVE_ADDRESS);
+        address addressForLoanAssetExchange = uniswapFactory.getExchange(RESERVE_ADDRESS);
+    
         // Instantiate Exchange A
-        exchangeAforLoanAsset = IUniswapExchange(addressForLoanAssetExchangeA);
-        exchangeBforLoanAsset = IUniswapExchange(addressForLoanAssetExchangeB);
+        exchangeforLoanAsset = IUniswapExchange(addressForLoanAssetExchange);
+     
 
         IERC20 loan = IERC20(RESERVE_ADDRESS);
-        IERC20 bat = IERC20(USDT_ADDRESS);
+        IERC20 usdt = IERC20(USDT_ADDRESS);
 
-        // Swap the reserve asset (e.g. DAI) for BAT
+        // Swap the reserve asset (e.g. DAI) for USDT
         require(loan.approve(address(exchangeBforLoanAsset), _amount), "Could not approve reserve asset sell");
 
         uint256 usdtPurchased = exchangeBforLoanAsset.tokenToTokenSwapInput(
@@ -149,10 +144,10 @@ contract FlashloanBorrower is IERC3156FlashBorrower {
             USDT_ADDRESS
         );
 
-        require(usdt.approve(address(exchangeAforUSDT), usdtPurchased), "Could not approve USDT asset sell");
+        require(usdt.approve(address(exchangeforUSDT), usdtPurchased), "Could not approve USDT asset sell");
 
         // Swap USDT back to the reserve asset (e.g. DAIs)
-        uint256 reserveAssetPurchased = exchangeAforUSDT.tokenToTokenSwapInput(
+        uint256 reserveAssetPurchased = exchangeforUSDT.tokenToTokenSwapInput(
             usdtPurchased,
             1,
             1,
