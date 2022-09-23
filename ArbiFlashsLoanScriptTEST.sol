@@ -26,13 +26,13 @@ contract MyArbiFlashLoanScriptTEST is AaveFlashRecieveBase {
     
     address public constant AaveLendingPoolAddressProviderAddress = 0x6B175474E89094C44Da98b954EedeAC495271d0F
     address public constant USDT_ADDRESS = 0xdAC17F958D2ee523a2206206994597C13D831ec7
-    address public constant UNISWAP FACTORY =
+    address public constant UNISWAP FACTORY = 0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f
     
     IUniswapFactory public uniswapFactoryA;
     IUniswapFactory public uniswapFactoryB;
-    IUniswapExchange public exchangeAforLoanAsset;
+    IUniswapExchange public exchangeforLoanAsset;
     IUniswapExchange public exchangeBforLoanAsset;
-    IUniswapExchange public exchangeAforBAT;
+    IUniswapExchange public exchangeforUSDT;
     IUniswapExchange public exchangeBforBAT;
 
    constructor() public {
@@ -49,7 +49,7 @@ contract MyArbiFlashLoanScriptTEST is AaveFlashRecieveBase {
       address addressForUSDTExchangeA = uniswapFactoryA.getExchange(USDT_ADDRESS);
       address addressForBATExchangeB = uniswapFactoryB.getExchange(BAT_ADDRESS);
       // Instantiate Exchange B for BAT Token swaps
-      exchangeAforBAT = IUniswapExchange(addressForUST=DTExchangeA);
+      exchangeAforBAT = IUniswapExchange(addressForUSDTExchangeA);
       exchangeBforBAT = IUniswapExchange(addressForBATExchangeB);
    
    interface IERC20 {
