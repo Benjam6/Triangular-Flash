@@ -52,7 +52,7 @@ contract MyArbiFlashLoanScriptTEST is AaveFlashRecieveBase {
     function transfer(address _to, uint256 _value) external returns (bool success);
     
     
-    }
+    );
 
 
 
@@ -87,10 +87,10 @@ contract FlashloanBorrower is IERC3156FlashBorrower {
 
    
     function initiateFlashloan(
-      address flashloanProviderAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F"
-      address token = "0x6B175474E89094C44Da98b954EedeAC495271d0F"
-      uint amount = 1000000000000000000000
-      bytes calldata data = 0X0.0
+      address flashloanProviderAddress = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
+      address token = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
+      uint amount = 1000000000000000000000;
+      bytes calldata data = 0X0.0;
     ) external {
       IERC3156FlashLender(flashloanProviderAddress).flashLoan(
         IERC3156FlashBorrower(address(this)),
