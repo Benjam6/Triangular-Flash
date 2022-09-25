@@ -47,7 +47,8 @@ contract MyArbiFlashLoanScriptTEST is AaveFlashRecieveBase {
       address addressForUSDTExchange = uniswapFactory.getExchange(USDT_ADDRESS);
   
    
-   interface IERC20 {
+   
+interface IERC20 {
     function approve(address spender, uint256 amount) external returns (bool);
     function transfer(address _to, uint256 _value) external returns (bool success);
     
@@ -56,7 +57,7 @@ contract MyArbiFlashLoanScriptTEST is AaveFlashRecieveBase {
 
 
 
-interface IERC3156MyArbiFlashLoanScriptTEST {
+interface IERC20MyArbiFlashLoanScriptTEST {
  
     function onFlashLoan(
         address initiator,
@@ -67,7 +68,7 @@ interface IERC3156MyArbiFlashLoanScriptTEST {
     ) external returns (bytes32);
 }
 
-interface IERC3156FlashLender {
+interface IERC20FlashLender {
    function flashLoan(
         IERC3156FlashBorrower receiver,
         address token,
@@ -77,7 +78,7 @@ interface IERC3156FlashLender {
 }
 
 
-contract FlashloanBorrower is IERC3156FlashBorrower {
+contract FlashloanBorrower is IERC20FlashBorrower {
     uint public MAX_INT = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
     address public admin;
 
@@ -92,7 +93,7 @@ contract FlashloanBorrower is IERC3156FlashBorrower {
       uint amount = 1000000000000000000000;
       bytes calldata data = 0X0.0;
     ) external {
-      IERC3156FlashLender(flashloanProviderAddress).flashLoan(
+      IERC20FlashLender(flashloanProviderAddress).flashLoan(
         IERC3156FlashBorrower(address(this)),
         token,
         amount,
