@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity >=0.8.17;
 
-interface MyUniswapV2Router01 {
+interface UniswapV2Router01 {
     function factory() external pure returns (address);
 
     function WETH() external pure returns (address);
