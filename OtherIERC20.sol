@@ -8,7 +8,7 @@ pragma solidity ^0.8.17;
  */
 interface IERC20 {
     /**
-     * @dev Emitted when `value` tokens are moved from one account (`from`) to
+     * @dev emitted when `value` tokens are moved from one account (`from`) to
      * another (`to`).
      *
      * Note that `value` may be zero.
