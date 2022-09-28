@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity >=0.8.17;
 
-interface MyIERC20 {
+interface IERC20 {
     event Approval(
         address indexed owner,
         address indexed spender,
