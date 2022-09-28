@@ -1,3 +1,4 @@
+//SPDX-License-Identifier: MIT
 pragma solidity >=0.8.17;
 
 import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyUniswapV2Pair.sol";
