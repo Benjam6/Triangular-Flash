@@ -2,11 +2,11 @@
 
 pragma solidity >=0.8.17;
 
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyIERC20.sol";
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyAddress.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/IERC20.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/Address.sol";
 
 /**
- * @title MYSafeERC20
+ * @title SafeERC20
  * @dev  the Wrappers around ERC20 operations that throw on failure (when the token
  * contract returns false). Tokens that return no value (and instead revert or
  * throw on failure) are also supported, non-reverting calls are assumed to be
@@ -14,7 +14,7 @@ import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyAddress.sol";
  * To use this library you can add a `using SafeERC20 for IERC20;` statement to your contract,
  * which allows you to call the safe operations as `token.safeTransfer(...)`, etc.
  */
-library MySafeERC20 {
+library SafeERC20 {
     using Address for address;
 
     function safeTransfer(
