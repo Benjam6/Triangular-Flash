@@ -12,7 +12,7 @@ import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyMetaData.sol";
  * @dev Implementation of the {IERC20} interface.
  *
  * This implementation is agnostic to the way tokens are created. This means
- * that a supply mechanism has to be added in a derived contract using {_mint}.
+ * that a supply is mechanism has to be added in a derived contract using {_mint}.
  * For a generic mechanism see {ERC20PresetMinterPauser}.
  *
  * TIP: For a detailed writeup see our guide
