@@ -1,9 +1,9 @@
 //SPDX-License-Identifier: MIT
 pragma solidity >=0.8.17;
 
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyUniswapV2router01.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/UniswapV2router01.sol";
 
-interface MyUniswapV2Router02 is MyUniswapV2Router01 {
+interface UniswapV2Router02 is UniswapV2Router01 {
     function removeLiquidityETHSupportingFeeOnTransferTokens(
         address token,
         uint256 liquidity,
