@@ -10,7 +10,7 @@ import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyIERC20.sol";
  *
  * _Available since v4.1._
  */
-interface IERC20Metadata is IERC20 {
+interface IERC20 {
     /**
      * @dev Returns the name of the token.
      */
