@@ -1,11 +1,11 @@
 //SPDX-License-Identifier: MIT
 pragma solidity >=0.8.17;
 
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyUniswapV2Pair.sol";
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MySafeMath.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/UniswapV2Pair.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/SafeMath.sol";
 
 library UniswapV2Library {
-    using MySafeMath for uint;
+    using SafeMath for uint;
 
     // returns sorted token addresses, used to handle return values from pairs sorted in this order
     function sortTokens(address tokenA, address tokenB) internal pure returns (address token0, address token1) {
