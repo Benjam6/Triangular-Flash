@@ -3,9 +3,10 @@
 
 pragma solidity ^0.8.17;
 
-import "./IERC20.sol";
-import "./extensions/IERC20Metadata.sol";
-import "../../utils/Context.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyIERC20.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyContext.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyMetaData.sol";
+
 
 /**
  * @dev Implementation of the {IERC20} interface.
