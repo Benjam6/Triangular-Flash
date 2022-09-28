@@ -3,7 +3,7 @@
 
 pragma solidity ^0.8.0;
 
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyIERC20.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/IERC20.sol";
 
 /**
  * @dev Interface for the optional metadata functions from the ERC20 standard.
