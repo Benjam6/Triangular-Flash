@@ -4,18 +4,18 @@ pragma solidity >=0.8.17;
 
 
 // import "./interfaces/Uniswap.sol";
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MySafeERC20.sol";
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyIERC20.sol";
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyUniswapV2Factory.sol";
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyUniswapV2Library.sol";
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyUniswapV2Pair.sol";
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyUniswapV2router01.sol";
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyUniswapV2router02.sol";
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MySafeMath.sol";
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyOtherERC20.sol";
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyOtherIERC20.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/SafeERC20.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/IERC20.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/UniswapV2Factory.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/UniswapV2Library.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/UniswapV2Pair.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/UniswapV2router01.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/UniswapV2router02.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/SafeMath.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/OtherERC20.sol";
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/OtherIERC20.sol";
 
-contract ContractFlashTri {
+contract ContractBetterTestFlashScript {
     using SafeERC20 for IERC20;
 
     // Trade Variables
