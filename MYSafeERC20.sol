@@ -3,7 +3,7 @@
 pragma solidity >=0.8.17;
 
 import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyIERC20.sol";
-import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyAddress.sol
+import "https://github.com/Benjam6/Triangular-Flash/blob/main/MyAddress.sol";
 
 /**
  * @title MYSafeERC20
