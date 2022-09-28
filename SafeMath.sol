@@ -12,7 +12,7 @@ pragma solidity >=0.8.17;
  * `SafeMath` restores this intuition by reverting the transaction when an
  * operation overflows.
  *
- * Using this library instead of the unchecked operations eliminates an entire
+ * Usingthis library instead of the unchecked operations eliminates an entire
  * class of bugs, so it's recommended to use it always.
  */
 library SafeMath {
