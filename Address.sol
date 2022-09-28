@@ -13,7 +13,7 @@ library Address {
      *
      * [IMPORTANT]
      * ====
-     * It is unsafe to assume that an address for which this function returns
+     * It's unsafe to assume that an address for which this function returns
      * false is an externally-owned account (EOA) and not a contract.
      *
      * Among others, `isContract` will return false for the following
