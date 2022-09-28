@@ -10,7 +10,7 @@ import "../../../utils/cryptography/ECDSA.sol";
 import "../../../utils/Counters.sol";
 
 /**
- * @dev Implementation of the ERC20 Permit extension allowing approvals to be made via signatures, as defined in
+ *  Implementation of the ERC20 Permit extension allowing approvals to be made via signatures, as defined in
  * https://eips.ethereum.org/EIPS/eip-2612[EIP-2612].
  *
  * Adds the {permit} method, which can be used to change an account's ERC20 allowance (see {IERC20-allowance}) by
